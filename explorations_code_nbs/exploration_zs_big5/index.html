@@ -320,6 +320,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gold-standard" class="md-nav__link">
+    Gold Standard
+  </a>
+  
+    <nav class="md-nav" aria-label="Gold Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning-perspective" class="md-nav__link">
+    Machine Learning Perspective
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviorial-scientist-perspective" class="md-nav__link">
+    Behaviorial Scientist Perspective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -427,6 +454,33 @@
   <a href="#convergent-validity" class="md-nav__link">
     Convergent Validity
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gold-standard" class="md-nav__link">
+    Gold Standard
+  </a>
+  
+    <nav class="md-nav" aria-label="Gold Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning-perspective" class="md-nav__link">
+    Machine Learning Perspective
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviorial-scientist-perspective" class="md-nav__link">
+    Behaviorial Scientist Perspective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -612,6 +666,86 @@
 </tbody>
 </table>
 <p>These relationships are very encouraging! <img alt="🎯" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3af.svg" title=":dart:" /> Conscientiousness and Neuroticism traits likely didn't have strong convergent validity because the <abbr title="Situational Judgment Test">SJT</abbr> prompts were worded too strongly and didn't end up promoting meaningful variability (Google: <a href="https://www.google.com/search?sxsrf=ALeKk01AepjpafWGO0f8uHaEdT8Lkwz4Sw%3A1603223322107&amp;ei=Gj-PX873BZXPtQaY8LPACA&amp;q=Walter+Mischel+strong+vs+weak+situations&amp;oq=Walter+Mischel+strong+vs+weak+situations&amp;gs_lcp=CgZwc3ktYWIQAzIECCMQJ1CziAFYi6wBYPbDAWgAcAB4AIABaogBoQOSAQM0LjGYAQCgAQGqAQdnd3Mtd2l6wAEB&amp;sclient=psy-ab&amp;ved=0ahUKEwjO7O-k-MPsAhWVZ80KHRj4DIgQ4dUDCA0&amp;uact=5" target="_blank">Walter Mischel strong vs weak situations</a>). Let's look closer.</p>
+<h2 id="gold-standard">Gold Standard <img alt="🤓" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f913.svg" title=":nerd:" /><a class="headerlink" href="#gold-standard" title="Permanent link"></a></h2>
+<h3 id="machine-learning-perspective">Machine Learning Perspective<a class="headerlink" href="#machine-learning-perspective" title="Permanent link"></a></h3>
+<p>Let's compare the <abbr title="Zero Shot Learning">ZSL</abbr> scores to a gold-standard subject matter evaluation. As an industrial organizational psychologist (<abbr title="Society for Industrial Organizational Psychology">SIOP</abbr>) I have plenty of experience evaluating text responses in terms of psychological traits/constructs especially with respect to the Guidelines and Ethical Considerations for Assessment Center Operations. <img alt="⚡" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a1.svg" title=":zap:" /> <img alt="🎸" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3b8.svg" title=":guitar:" /></p>
+<p>As we can see below, the <abbr title="Zero Shot Learning">ZSL</abbr> does a nice job of classifying agreeable responses as agreeable (i.e., recall). <abbr title="Zero Shot Learning">ZSL</abbr> struggled to classify only relevant responses as agreeable (i.e., precision). We have quite a few false positives; responses that are classified as agreeable that are actually not agreeable. <strong>In general, this level of model performance between <img alt="🤖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f916.svg" title=":robot:" /> and <img alt="🤓" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f913.svg" title=":nerd:" /> is excellent considering the <abbr title="Zero Shot Learning">ZSL</abbr> model wasn't trained explicitly on the difference between an agreeable or disagreeable response.</strong>   </p>
+<p><center></p>
+<p><img alt="cf" src="../../images/cf_matrix.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Accuracy</code></td>
+<td>.71</td>
+</tr>
+<tr>
+<td><code>Precision</code></td>
+<td>.69</td>
+</tr>
+<tr>
+<td><code>Recall</code></td>
+<td>.93</td>
+</tr>
+<tr>
+<td><code>F1 Score</code></td>
+<td>.79</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<h3 id="behaviorial-scientist-perspective">Behaviorial Scientist Perspective<a class="headerlink" href="#behaviorial-scientist-perspective" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">Type</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ICC1</td>
+<td align="center">Single raters absolute</td>
+<td align="center">0.31</td>
+</tr>
+<tr>
+<td align="left">ICC2</td>
+<td align="center">Single random raters</td>
+<td align="center">0.34</td>
+</tr>
+<tr>
+<td align="left">ICC3</td>
+<td align="center">Single fixed raters</td>
+<td align="center">0.38</td>
+</tr>
+<tr>
+<td align="left">ICC1k</td>
+<td align="center">Average raters absolute</td>
+<td align="center">0.47</td>
+</tr>
+<tr>
+<td align="left">ICC2k</td>
+<td align="center">Average random raters</td>
+<td align="center">0.51</td>
+</tr>
+<tr>
+<td align="left">ICC3k</td>
+<td align="center">Average fixed raters</td>
+<td align="center">0.55</td>
+</tr>
+<tr>
+<td align="left">QWK</td>
+<td align="center">Quadratic Weighted Kappa</td>
+<td align="center">0.34</td>
+</tr>
+</tbody>
+</table>
                 
               
               
