@@ -1,0 +1,1321 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Exploring new ML technology and adding a people science spin to it.">
+      
+      
+        <link rel="canonical" href="https://dmracek.github.io/explorations_code_nbs/exploration_zs_snorkel/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Scaling Expertise - derekmracek.io</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+      <link rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/extra.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-181048574-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scaling-expertise" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://dmracek.github.io/" title="derekmracek.io" class="md-header-nav__button md-logo" aria-label="derekmracek.io">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 23c-1.1 0-2-.9-2-2v-2h6v2c0 1.1-.9 2-2 2h-2m1-20c.28 0 .55 0 .81.05C13.42 4.22 14 6.26 14 9c0 2.1-1 7-1 7h-2s-1-4.9-1-7c0-2.74.58-4.78 1.19-5.95.26-.05.53-.05.81-.05m0-2c-.71 0-1.39.09-2.05.26C8.78 2.83 8 5.71 8 9c0 2.28.38 4.37 1 7 0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2 .62-2.63 1-4.72 1-7 0-3.29-.78-6.17-1.95-7.74C13.39 1.09 12.71 1 12 1M4 8c0 3.18 1.85 7.92 4.54 9.21-.54-1-.93-2.54-1.2-4.21C6.55 11.53 6 9.62 6 8c0-1.34.44-2.33 1.47-3.2.26-1.13.62-2.15 1.07-3.01C5.85 3.08 4 4.82 4 8m11.46-6.21c.45.86.81 1.88 1.07 3.01C17.56 5.67 18 6.66 18 8c0 1.62-.55 3.53-1.34 5-.27 1.67-.66 3.21-1.2 4.21C18.15 15.92 20 11.18 20 8s-1.85-4.92-4.54-6.21z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            derekmracek.io
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Scaling Expertise
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://dmracek.github.io/" title="derekmracek.io" class="md-nav__button md-logo" aria-label="derekmracek.io">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 23c-1.1 0-2-.9-2-2v-2h6v2c0 1.1-.9 2-2 2h-2m1-20c.28 0 .55 0 .81.05C13.42 4.22 14 6.26 14 9c0 2.1-1 7-1 7h-2s-1-4.9-1-7c0-2.74.58-4.78 1.19-5.95.26-.05.53-.05.81-.05m0-2c-.71 0-1.39.09-2.05.26C8.78 2.83 8 5.71 8 9c0 2.28.38 4.37 1 7 0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2 .62-2.63 1-4.72 1-7 0-3.29-.78-6.17-1.95-7.74C13.39 1.09 12.71 1 12 1M4 8c0 3.18 1.85 7.92 4.54 9.21-.54-1-.93-2.54-1.2-4.21C6.55 11.53 6 9.62 6 8c0-1.34.44-2.33 1.47-3.2.26-1.13.62-2.15 1.07-3.01C5.85 3.08 4 4.82 4 8m11.46-6.21c.45.86.81 1.88 1.07 3.01C17.56 5.67 18 6.66 18 8c0 1.62-.55 3.53-1.34 5-.27 1.67-.66 3.21-1.2 4.21C18.15 15.92 20 11.18 20 8s-1.85-4.92-4.54-6.21z"/></svg>
+
+    </a>
+    derekmracek.io
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../background/background/" class="md-nav__link">
+      Background
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Blog
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Blog" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Blog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exploration_background/" class="md-nav__link">
+      Explorations + Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Scaling Expertise
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Scaling Expertise
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#strapping-domain-expertise-to-a-rocket" class="md-nav__link">
+    Strapping domain expertise to a rocket?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background-on-snorkel" class="md-nav__link">
+    Background on Snorkel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-dataset" class="md-nav__link">
+    Setting Up The Dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snorkel-flow" class="md-nav__link">
+    Snorkel Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="Snorkel Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-teaching" class="md-nav__link">
+    Machine Teaching
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    Machine Learning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-signals-used-to-program-expertise" class="md-nav__link">
+    (1) Signals Used To Program Expertise
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Signals Used To Program Expertise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    Metrics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-generative-model" class="md-nav__link">
+    (2) Generative Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-predict-labels-using-ml" class="md-nav__link">
+    (3) Predict Labels Using ML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exploration_gpt2_ws/" class="md-nav__link">
+      GPT-2 Interview Response
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exploration_zs_big5/" class="md-nav__link">
+      Zero-shot Classify |+ Big 5
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#strapping-domain-expertise-to-a-rocket" class="md-nav__link">
+    Strapping domain expertise to a rocket?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background-on-snorkel" class="md-nav__link">
+    Background on Snorkel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-dataset" class="md-nav__link">
+    Setting Up The Dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snorkel-flow" class="md-nav__link">
+    Snorkel Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="Snorkel Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-teaching" class="md-nav__link">
+    Machine Teaching
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    Machine Learning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-signals-used-to-program-expertise" class="md-nav__link">
+    (1) Signals Used To Program Expertise
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Signals Used To Program Expertise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    Metrics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-generative-model" class="md-nav__link">
+    (2) Generative Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-predict-labels-using-ml" class="md-nav__link">
+    (3) Predict Labels Using ML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="scaling-expertise"><img alt="🧠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f9e0.svg" title=":brain:" /><img alt="🚀" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f680.svg" title=":rocket:" /> Scaling Expertise<a class="headerlink" href="#scaling-expertise" title="Permanent link"></a></h1>
+<p>Feb 25, 2021 📖 ~15 min read</p>
+<p><a class="md-button md-button--primary" href="https://www.buymeacoffee.com/derekmracek.io" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 23c-1.1 0-2-.9-2-2v-2h6v2c0 1.1-.9 2-2 2h-2m1-20c.28 0 .55 0 .81.05C13.42 4.22 14 6.26 14 9c0 2.1-1 7-1 7h-2s-1-4.9-1-7c0-2.74.58-4.78 1.19-5.95.26-.05.53-.05.81-.05m0-2c-.71 0-1.39.09-2.05.26C8.78 2.83 8 5.71 8 9c0 2.28.38 4.37 1 7 0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2 .62-2.63 1-4.72 1-7 0-3.29-.78-6.17-1.95-7.74C13.39 1.09 12.71 1 12 1M4 8c0 3.18 1.85 7.92 4.54 9.21-.54-1-.93-2.54-1.2-4.21C6.55 11.53 6 9.62 6 8c0-1.34.44-2.33 1.47-3.2.26-1.13.62-2.15 1.07-3.01C5.85 3.08 4 4.82 4 8m11.46-6.21c.45.86.81 1.88 1.07 3.01C17.56 5.67 18 6.66 18 8c0 1.62-.55 3.53-1.34 5-.27 1.67-.66 3.21-1.2 4.21C18.15 15.92 20 11.18 20 8s-1.85-4.92-4.54-6.21z"/></svg></span> Support This Site  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 1.07C7.05 1.56 4 4.92 4 9h7m-7 6a8 8 0 008 8 8 8 0 008-8v-4H4m9-9.93V9h7c0-4.08-3.06-7.44-7-7.93z"/></svg></span></a></p>
+<h2 id="strapping-domain-expertise-to-a-rocket">Strapping domain expertise to a rocket?<a class="headerlink" href="#strapping-domain-expertise-to-a-rocket" title="Permanent link"></a></h2>
+<p>A potential employee (i.e., candidate) applies for a job. They take assessments&ndash;some of which involve responding in her/his own words. How do we evaluate those responses in a <strong>reliable</strong>, <strong>valid</strong>, <em>and</em> <strong>scaleable</strong> manner? </p>
+<p>Best practices for evaluating open-ended text responses ⚖️ have <a href="https://journals.sagepub.com/doi/pdf/10.1177/0149206314567780" target="_blank">been around since 1975</a>. More recently, these best practices have been <a href="https://www.prweb.com/releases/shaker_international_wins_ipac_2019_innovations_in_assessment_award/prweb16441899.htm" target="_blank">combined with the automated essay scoring paradigm</a>&ndash;essentially predicting ground truth gold labels of <abbr title="Subject Matter Experts">SMEs</abbr> using natural language processing <img alt="🤖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f916.svg" title=":robot:" /> &ndash; Even with this exciting advancement, having experts go row-by-row evaluating each-and-every-response on a numeric scale is a bottleneck with many limitations 🥴</p>
+<p>Let's use <a href="https://snorkel.ai/" target="_blank">snorkel.ai</a> a Python package for weak/distant supervision that combines expert <strong>precision</strong> with state-of-the-art scalability <img alt="🚀" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f680.svg" title=":rocket:" /> (i.e., <strong>coverage</strong>) to label/rate our text responses in terms of a psychological construct; specifically, the Big 5 personality trait of extraversion. Even better, lets create Python labeling functions (<abbr title="Labeling functions">LFs</abbr>) <img alt="🐍" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f40d.svg" title=":snake:" /> out of <a href="https://joeddav.github.io/blog/2020/05/29/ZSL.html" target="_blank"><img alt="🤗" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f917.svg" title=":hugging_face:" /></a> zero-shot learning (<abbr title="Zero Shot Learning">ZSL</abbr>) as a high-coverage heuristic.</p>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link"></a></h2>
+<p><em>TLDR: Snorkel is a fitting framework that promotes <abbr title="Subject Matter Experts">SMEs</abbr> ability to impart their wisdom to scale</em>.</p>
+<p>Specifically, we <img alt="👇" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f447.svg" title=":point_down:" /></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Programmed functions in Python that mapped onto our <abbr title="Subject Matter Expert">SME</abbr> ground truth gold labels<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Zero-shot predictions for the 35 factors/facets of the Big 5 personality taxonomy</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> TextBlob sentiment</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Pattern-based heuristics (i.e., keywords)</li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Created a generative model based on accuracies and correlations of our labeling functions<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Programmatically labeled all of our unlabeled responses </li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Trained a machine learning model on all (previously unlabeled) data</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Strategy works with guidelines and ethical considerations for assessment center operations</li>
+</ul>
+<hr />
+<h2 id="background-on-snorkel">Background on Snorkel<a class="headerlink" href="#background-on-snorkel" title="Permanent link"></a></h2>
+<p>There are quite a few resources on Snorkel; such as, this <a href="https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8" target="_blank">one</a> and this <a href="https://blog.acolyer.org/2018/08/22/snorkel-rapid-training-data-creation-with-weak-supervision/" target="_blank">one</a>. Essentially, the tried and true high-precision, low-coverage approach of having <abbr title="Subject Matter Experts">SMEs</abbr> read through and evaluate each response is a <strong>bottleneck</strong> because:</p>
+<ol>
+<li>Experts are expensive and can only label so many responses (i.e., low coverage) 💲<img alt="🤓" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f913.svg" title=":nerd:" /><img alt="🏷" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3f7.svg" title=":label:" /><ul>
+<li>State-of-the-art models require Big Data (i.e., high coverage) 💲💲💲</li>
+</ul>
+</li>
+<li>Class definitions/granularity change requiring re-labeling 💲🥴<img alt="🏷" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3f7.svg" title=":label:" /></li>
+<li>Changes in tech such as APIs lose the text/label relationships 💲🙃<img alt="🏷" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3f7.svg" title=":label:" /></li>
+<li>Test security involves multiple/parallel measures that require more labels 💲🔐<img alt="🏷" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3f7.svg" title=":label:" /></li>
+</ol>
+<p>📸 Instead of capturing a fleeting snapshot of expertise the idea behind Snorkel is that we can <strong>bring all sources of signal to bear</strong> including <abbr title="Subject Matter Experts">SMEs</abbr>, to <em>programmatically</em> label <em>limitless</em> text. </p>
+<p>⚖️ The hook is that we incorporate a small subset of expertly rated ground truth gold labels to promote the legal defensibility of our approach. </p>
+<p>🪙 In this way, we label the <strong>population</strong> of responses (i.e., coverage) and demonstrate precision with respect to our <strong>sample</strong> of <abbr title="Subject Matter Expert">SME</abbr> gold.</p>
+<hr />
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
+<p>Let's use the <abbr title="Society for Industrial Organizational Psychology">SIOP</abbr> 2019 ML competition data&ndash;focusing on the scenario-based prompt that was written to promote variability in terms of extraversion.</p>
+<details class="question" open="open"><summary>Extraversion Prompt</summary><p>"You and a colleague have had a long day at work and you just find out you have been invited to a networking meeting with one of your largest clients. Your colleague is leaning towards not going and if they don't go you won’t know anyone there. What would you do and why?"</p>
+</details>
+<hr />
+<blockquote>
+<p><strong>Examples of Gold Label Ground Truth Extraverted Responses</strong> 🪙</p>
+<blockquote>
+<p>I would go and enjoy myself and network with the client.  I have no issue with meeting new people or being in unfamiliar environments.  My personality is naturally open and engaging.</p>
+<p>I would go to the meeting. The purpose is to meet new people and I am up for the task. I consider myself social and would have no problem adjusting.
+</p>
+</blockquote>
+<p><strong>Examples of Gold Label Ground Truth <em>Not</em> Extraverted Responses</strong> 🪙</p>
+<blockquote>
+<p>I would not go because I am very introverted. It would be awkward and not fun if I did not know anyone else there. Even though it could be beneficial to my career, I would be too anxious to go.</p>
+<p>I would go home after work. As an introvert, it takes a lot of energy for me to be social and engaged in networking settings, so I would very likely feel uncomfortable and awkward. I would much rather relax at home with my wife and puppy, eat a nice dinner with them, and spend the night watching TV.
+</p>
+</blockquote>
+</blockquote>
+<h3 id="setting-up-the-dataset">Setting Up The Dataset<a class="headerlink" href="#setting-up-the-dataset" title="Permanent link"></a></h3>
+<p>Our end goal is to train a machine learning text classifier that can evaluate responses as extraverted or not extraverted (1 for extraverted; 0 for not extraverted). We have a total of <strong>1688</strong> responses. A subject matter expert (me) provided gold label ground truth for <strong>350</strong> responses (about 20%); 120 went into our training split; 115 for our development set; and 115 for test set for a 1:1:1 ratio. </p>
+<p>We don't typically put gold labels in the training split, but I set it up this way to potentially build baseline models and for diagnostic purposes. </p>
+<p><em>Please note in our training split we have the remaining 1338 unlabeled responses</em>.</p>
+<details class="warning" open="open"><summary>Warning</summary><p>I'm using a very small, open-source dataset to show a minimimally viable walk-through (MVP). The power of this approach is when we have lots of unlabeled data. <em>Still</em> I'm not labeling 1688 responses!</p>
+</details>
+<hr />
+<h2 id="snorkel-flow">Snorkel Flow<a class="headerlink" href="#snorkel-flow" title="Permanent link"></a></h2>
+<h3 id="machine-teaching">Machine Teaching<a class="headerlink" href="#machine-teaching" title="Permanent link"></a></h3>
+<p><img alt="🐍" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f40d.svg" title=":snake:" /> The first step (1) is writing labeling functions (<abbr title="Labeling functions">LFs</abbr>) in Python that express <strong>expertise</strong> in terms of evaluating extraversion.</p>
+<p><img alt="🎯" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3af.svg" title=":dart:" /> Next (2) Snorkel automatically learns a generative model based on the <strong>accuracies</strong> and <strong>correlations</strong> of the <abbr title="Labeling functions">LFs</abbr>. Using this generative model, programmatic/soft labels are created for our population of responses.</p>
+<h3 id="machine-learning">Machine Learning<a class="headerlink" href="#machine-learning" title="Permanent link"></a></h3>
+<p><img alt="🤖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f916.svg" title=":robot:" /> Finally (3) we predict these programmatic/soft labels using a <strong>supervised ML model</strong>.</p>
+<hr />
+<h2 id="1-signals-used-to-program-expertise">(1) Signals Used To Program Expertise<a class="headerlink" href="#1-signals-used-to-program-expertise" title="Permanent link"></a></h2>
+<p><strong>External models out-of-the-box</strong>: Let's use <a href="https://joeddav.github.io/blog/2020/05/29/ZSL.html" target="_blank"><img alt="🤗" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f917.svg" title=":hugging_face:" /></a> zero-shot learning to build heuristics; that is, classify responses in terms of <em>not just extraversion</em> but <strong>all 35</strong> factors/facets of the Big 5 personality taxonomy. <abbr title="Zero Shot Learning">ZSL</abbr> is perfect for providing weak/distant supervision (i.e., coverage). It is a bit noisy&ndash;because we didn't explicitly train a model to learn the 35 factors/facets&ndash;nevertheless, these weak classifers do quite well in predicting our expertly labeled 🪙 extraversion. They're not perfect, but they provide tremendous coverage of <strong>all</strong> our responses.</p>
+<p>I did an <a href="https://dmracek.github.io/explorations_code_nbs/exploration_zs_big5/" target="_blank">entire post on zero-shot</a> worth checking out. </p>
+<details class="tldr"><summary>Journal Article</summary><p>I used the factors/facets found in the APPENDIX of <a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1018&amp;context=psychfacpub" target="_blank">this journal article</a>.</p>
+<p>Zillig, L. M. P., Hemenover, S. H., &amp; Dienstbier, R. A. (2002). What do we assess when we assess a Big 5 trait? A content analysis of the affective, behavioral, and cognitive processes represented in Big 5 personality inventories. <em>Personality and Social Psychology Bulletin</em>, 28(6), 847-858.</p>
+</details>
+<p>To build <abbr title="Labeling functions">LFs</abbr> from zero-shot predictions, I adapted the <a href="https://github.com/snorkel-team/snorkel-tutorials/tree/master/crowdsourcing" target="_blank">Snorkel tutorial on crowdsourcing</a>. </p>
+<details class="quote"><summary>More Details on Zero-Shot Learning</summary><p>Traditionally, zero-shot learning (<abbr title="Zero Shot Learning">ZSL</abbr>) most often referred to a fairly specific type of task: learn a classifier on one set of labels and then evaluate on a different set of labels that the classifier has never seen before.</p>
+<hr />
+<p>The approach, proposed by <a href="https://arxiv.org/abs/1909.00161" target="_blank">Yin et al. (2019)</a>, uses a pre-trained MNLI sequence-pair classifier as an out-of-the-box zero-shot text classifier that actually works pretty well. The idea is to take the sequence we're interested in labeling as the "premise" and to turn each candidate label into a "hypothesis." If the NLI model predicts that the premise "entails" the hypothesis, we take the label to be true..</p>
+</details>
+<details class="code"><summary>Code Example Zero-Shot</summary><div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">huggingface</span><span class="o">/</span><span class="n">transformers</span><span class="o">.</span><span class="n">git</span>
+
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
+
+<span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;I would go! I would be excited about going. Networking could advance my career. &#39;</span>
+<span class="s1">&#39;Networking could bring our company more work.&#39;</span><span class="p">)</span>
+
+<span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;agreeableness&#39;</span><span class="p">,</span> <span class="s1">&#39;conscientiousness&#39;</span><span class="p">,</span> <span class="s1">&#39;extraversion&#39;</span><span class="p">,</span> <span class="s1">&#39;neuroticism&#39;</span><span class="p">,</span> <span class="s1">&#39;openness&#39;</span><span class="p">]</span>
+
+<span class="n">hypothesis_template</span> <span class="o">=</span> <span class="s1">&#39;This response is characterized by </span><span class="si">{}</span><span class="s1">.&#39;</span>
+
+<span class="n">classifier</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hypothesis_template</span><span class="o">=</span><span class="n">hypothesis_template</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="code"><summary>Code To Build <abbr title="Labeling functions">LFs</abbr> from Zero-Shot</summary><div class="highlight"><pre><span></span><code><span class="c1"># To create LFs from zero-shot I used the example in the snorkel-tutorial on crowdsourcing</span>
+<span class="c1"># https://github.com/snorkel-team/snorkel-tutorials/tree/master/crowdsourcing</span>
+
+<span class="n">labels_by_zs</span> <span class="o">=</span> <span class="n">zs_labels</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;candidate_label_id&quot;</span><span class="p">)</span>
+<span class="n">zs_dicts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">zs_id</span> <span class="ow">in</span> <span class="n">labels_by_zs</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+<span class="n">zs_df</span> <span class="o">=</span> <span class="n">labels_by_zs</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">zs_id</span><span class="p">)[[</span><span class="s2">&quot;label&quot;</span><span class="p">]]</span>
+<span class="n">zs_dicts</span><span class="p">[</span><span class="n">zs_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">zs_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">zs_df</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+
+<span class="n">ABSTAIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">zs_lf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">zs_dict</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">zs_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">response_id</span><span class="p">,</span> <span class="n">ABSTAIN</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">make_zs_lf</span><span class="p">(</span><span class="n">zs_id</span><span class="p">):</span>
+    <span class="n">zs_dict</span> <span class="o">=</span> <span class="n">zs_dicts</span><span class="p">[</span><span class="n">zs_id</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;lf_</span><span class="si">{</span><span class="n">zs_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">LabelingFunction</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">zs_lf</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;zs_dict&quot;</span><span class="p">:</span> <span class="n">zs_dict</span><span class="p">})</span>
+
+<span class="n">zs_lfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_zs_lf</span><span class="p">(</span><span class="n">zs_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">zs_id</span> <span class="ow">in</span> <span class="n">zs_dicts</span><span class="p">]</span>
+</code></pre></div>
+</details>
+<p><strong>More external models</strong>: Positive emotion is a facet of extraversion. Let's use an out-of-the-box model <strong>TextBlob</strong> to provide signal in terms of <strong>positive sentiment</strong> <img alt="😄" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f604.svg" title=":smile:" /> </p>
+<p>I used the example code from the <a href="https://www.snorkel.org/use-cases/01-spam-tutorial#e-writing-an-lf-that-uses-a-third-party-model" target="_blank">Snorkel documentation</a>.</p>
+<details class="code"><summary>Code TextBlog Labeling Functions</summary><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">snorkel.preprocess</span> <span class="kn">import</span> <span class="n">preprocessor</span>
+<span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
+
+<span class="n">ABSTAIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nd">@preprocessor</span><span class="p">(</span><span class="n">memoize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">textblob_sentiment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">polarity</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">polarity</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">subjectivity</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">subjectivity</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="nd">@labeling_function</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">textblob_sentiment</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">polarity_positive</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">polarity</span> <span class="o">&gt;</span> <span class="mf">0.3</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nd">@labeling_function</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">textblob_sentiment</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">polarity_negative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">polarity</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.25</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nd">@labeling_function</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">textblob_sentiment</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">polarity_negative_2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">polarity</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nd">@labeling_function</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">textblob_sentiment</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">textblob_subjectivity</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">subjectivity</span> <span class="o">&gt;=</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="n">ABSTAIN</span>
+</code></pre></div>
+</details>
+<p><strong>Pattern-based</strong> heuristics: I picked up on <strong>keywords</strong> that reflect <em>extraverted/introverted</em> behaviors</p>
+<ul>
+<li>Extraverted: extraverted, adventure, exciting, !, extroverted, butterfly, outgoing, upbeat</li>
+<li>introverted: introverted, awkward, uncomfortable, quiet, intimidating, shy</li>
+</ul>
+<p>I used the example code from the <a href="https://www.snorkel.org/use-cases/01-spam-tutorial#3-writing-more-labeling-functions" target="_blank">Snorkel documentation</a>.</p>
+<details class="code"><summary>Code Keyword Labeling Functions</summary><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">keyword_lookup</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keywords</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">label</span>
+<span class="k">return</span> <span class="n">ABSTAIN</span>
+
+<span class="k">def</span> <span class="nf">make_positive_keyword_lf</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">LabelingFunction</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;keyword_</span><span class="si">{</span><span class="n">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">keyword_lookup</span><span class="p">,</span>
+        <span class="n">resources</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">make_negative_keyword_lf</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">LabelingFunction</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;keyword_</span><span class="si">{</span><span class="n">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">keyword_lookup</span><span class="p">,</span>
+        <span class="n">resources</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<span class="n">keyword_positive</span> <span class="o">=</span> <span class="n">make_positive_keyword_lf</span><span class="p">(</span>
+    <span class="n">keywords</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;extraverted&quot;</span><span class="p">,</span> <span class="s2">&quot;adventure&quot;</span><span class="p">,</span> <span class="s2">&quot;exciting&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;extroverted&quot;</span><span class="p">,</span> <span class="s2">&quot;butterfly&quot;</span><span class="p">,</span> <span class="s2">&quot;outgoing&quot;</span><span class="p">,</span> <span class="s2">&quot;upbeat&quot;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">keyword_negative</span> <span class="o">=</span> <span class="n">make_negative_keyword_lf</span><span class="p">(</span>
+    <span class="n">keywords</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;introverted&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;awkward&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;anxious&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uncomfortable&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;quiet&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;loner&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;intimidating&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;disorder&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;stressful&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;miserable&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;shy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dread&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;beg&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+</details>
+<p>There are additional ways to express expertise (i.e., build <abbr title="Labeling functions">LFs</abbr>) check out this <a href="https://www.snorkel.org/use-cases/01-spam-tutorial" target="_blank">link</a> and below.</p>
+<ul>
+<li><strong>Distant supervision</strong>: According to <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5951191/" target="_blank">Ratner et al.,</a> "Distant supervision generates training labels by
+heuristically aligning data points with an external knowledge base, and is one of the most popular forms of weak supervision."</li>
+<li><strong>Labeling-function generators</strong>: Again from Ratner et al., we can build labeling functions from crowdsourced labelers such as from Mturk. Note these are <em>not</em> used as gold labels rather for high coverage signal.</li>
+<li><strong>spaCy syntactics</strong>: More advanced NLP such as parts-of-speech (POS) and named entities (NER) can be used to capture nuanced patterns of behavior that represent the psychological constructs of interest.</li>
+</ul>
+<h3 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link"></a></h3>
+<p>The power of Snorkel is our <abbr title="Labeling functions">LFs</abbr>, for the same response, will conflict. For example, zero-shot prediction of <code>warmth</code> could predict a 0 (not extraverted) and <code>gregariousness</code> a 1 (extraverted). That's OK we can denoise the conflict 🤝</p>
+<p>Here are the metrics for when we analyze how our <abbr title="Labeling functions">LFs</abbr> did on the development set, <em>N</em> = 115.</p>
+<ul>
+<li><strong>Emp. Accuracy</strong>: Accuracy of  <abbr title="Labeling function">LF</abbr> predictions. For example, our <strong>keywords</strong> that represented an introverted response (e.g., <code>shy</code> or <code>awkward</code>) were <strong>83%</strong> accurate.</li>
+<li><strong>Coverage</strong>: % of responses with at least one <abbr title="Labeling function">LF</abbr> vote, extraverted (1) or not (0). <em>We want coverage</em>. Our <strong>keywords</strong> that represented an introverted response only had 21% coverage (21/115); whereas, our zero-shot prediction of extraversion has 100% coverage.</li>
+<li><strong>Polarity</strong>: Values the <abbr title="Labeling function">LF</abbr> returns (1 = extraverted; 0 = not extraverted/introverted).</li>
+<li><strong>Overlaps &amp; Conflicts</strong>: Metric the generative model uses to estimate the accuracy for each <abbr title="Labeling function">LF</abbr>.</li>
+</ul>
+<p>If we look at the far right column <code>Emp. Acc.</code> our individuals <abbr title="Labeling functions">LFs</abbr> are pretty accurate. </p>
+<table>
+<thead>
+<tr>
+<th align="left">Labeling Function (<abbr title="Labeling function">LF</abbr>)</th>
+<th align="left">Polarity</th>
+<th align="right">Coverage</th>
+<th align="right">Overlaps</th>
+<th align="right">Conflicts</th>
+<th align="right">Correct</th>
+<th align="right">Incorrect</th>
+<th align="right">Emp. Acc.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">TextBlog Sentiment Polarity Positive</td>
+<td align="left">[1]</td>
+<td align="right">0.17</td>
+<td align="right">0.17</td>
+<td align="right">0.16</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">0.84</td>
+</tr>
+<tr>
+<td align="left">Keywords Introverted</td>
+<td align="left">[0]</td>
+<td align="right">0.21</td>
+<td align="right">0.21</td>
+<td align="right">0.2</td>
+<td align="right">20</td>
+<td align="right">4</td>
+<td align="right">0.83</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Extraversion</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">89</td>
+<td align="right">26</td>
+<td align="right">0.77</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Positive Emotions</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">89</td>
+<td align="right">26</td>
+<td align="right">0.77</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Openness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">89</td>
+<td align="right">26</td>
+<td align="right">0.77</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Gregariousness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">89</td>
+<td align="right">26</td>
+<td align="right">0.77</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Assertiveness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">87</td>
+<td align="right">28</td>
+<td align="right">0.76</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Warmth</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">87</td>
+<td align="right">28</td>
+<td align="right">0.76</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Excitement Seeking</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">87</td>
+<td align="right">28</td>
+<td align="right">0.76</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Activity</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">87</td>
+<td align="right">28</td>
+<td align="right">0.76</td>
+</tr>
+<tr>
+<td align="left">TextBlog Sentiment Polarity Negative</td>
+<td align="left">[0]</td>
+<td align="right">0.1</td>
+<td align="right">0.1</td>
+<td align="right">0.1</td>
+<td align="right">9</td>
+<td align="right">3</td>
+<td align="right">0.75</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Achievement</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">84</td>
+<td align="right">31</td>
+<td align="right">0.73</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Competence</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">79</td>
+<td align="right">36</td>
+<td align="right">0.69</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Altruism</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">78</td>
+<td align="right">37</td>
+<td align="right">0.68</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Trust</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">77</td>
+<td align="right">38</td>
+<td align="right">0.67</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Agreeableness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">77</td>
+<td align="right">38</td>
+<td align="right">0.67</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Actions</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">75</td>
+<td align="right">40</td>
+<td align="right">0.65</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Aesthetics</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">74</td>
+<td align="right">41</td>
+<td align="right">0.64</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Ideas</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">74</td>
+<td align="right">41</td>
+<td align="right">0.64</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Tender Mindedness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">73</td>
+<td align="right">42</td>
+<td align="right">0.63</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Impulsiveness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">72</td>
+<td align="right">43</td>
+<td align="right">0.63</td>
+</tr>
+<tr>
+<td align="left">Keywords Extraverted</td>
+<td align="left">[1]</td>
+<td align="right">0.07</td>
+<td align="right">0.07</td>
+<td align="right">0.07</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">0.62</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Straightforwardness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">70</td>
+<td align="right">45</td>
+<td align="right">0.61</td>
+</tr>
+<tr>
+<td align="left">TextBlog Polarity Negative_2</td>
+<td align="left">[0]</td>
+<td align="right">0.83</td>
+<td align="right">0.83</td>
+<td align="right">0.77</td>
+<td align="right">55</td>
+<td align="right">41</td>
+<td align="right">0.57</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Values</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">63</td>
+<td align="right">52</td>
+<td align="right">0.55</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Fantasy</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">62</td>
+<td align="right">53</td>
+<td align="right">0.54</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Conscientiousness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">61</td>
+<td align="right">54</td>
+<td align="right">0.53</td>
+</tr>
+<tr>
+<td align="left">Zero-Shot Dutifulness</td>
+<td align="left">[0, 1]</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.93</td>
+<td align="right">60</td>
+<td align="right">55</td>
+<td align="right">0.52</td>
+</tr>
+<tr>
+<td align="left">Textblob Subjectivity</td>
+<td align="left">[1]</td>
+<td align="right">0.5</td>
+<td align="right">0.5</td>
+<td align="right">0.5</td>
+<td align="right">30</td>
+<td align="right">28</td>
+<td align="right">0.52</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-generative-model">(2) Generative Model<a class="headerlink" href="#2-generative-model" title="Permanent link"></a></h2>
+<p>Next, we take our noisy and conflicting labeling functions and use the Snorkel <code>LabelModel</code> to denoise and combine them using their accuracies <img alt="🎯" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f3af.svg" title=":dart:" /> and correlations <img alt="🕸" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f578.svg" title=":spider_web:" />. More accurate <abbr title="Labeling functions">LFs</abbr> are weighted accordingly. </p>
+<p>To check the quality of our generative model, we score it using our development set. We end up getting <strong>accuracy = .77</strong> which is pretty solid considering I plugged-and-played example code from the Snorkel documentation in addition to the zero-shot predictions.</p>
+<p>🪙 We labeled the <strong>population</strong> of responses and provided evidence it was precise with respect to our <strong>sample</strong> of <abbr title="Subject Matter Expert">SME</abbr> ground truth gold labels.</p>
+<p><strong>The result of this step is the generative model creates labels for all 1338 of our unlabeled responses</strong> 👌</p>
+<details class="code"><summary>Code PandasLFApplier LabelModel</summary><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">snorkel.analysis</span> <span class="kn">import</span> <span class="n">metric_score</span>
+<span class="kn">from</span> <span class="nn">snorkel.labeling</span> <span class="kn">import</span> <span class="n">PandasLFApplier</span>
+<span class="kn">from</span> <span class="nn">snorkel.labeling.model</span> <span class="kn">import</span> <span class="n">LabelModel</span>
+
+<span class="c1"># For this step, I followed the code in the Snorkel tutorial on crowdsourcing</span>
+<span class="c1"># https://github.com/snorkel-team/snorkel-tutorials/tree/master/crowdsourcing</span>
+
+<span class="c1"># Apply LFs to dev and train</span>
+<span class="n">applier</span> <span class="o">=</span> <span class="n">PandasLFApplier</span><span class="p">(</span><span class="n">all_lfs</span><span class="p">)</span>
+<span class="n">L_train</span> <span class="o">=</span> <span class="n">applier</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">df_train</span><span class="p">)</span>
+<span class="n">L_dev</span> <span class="o">=</span> <span class="n">applier</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">df_dev</span><span class="p">)</span>    
+
+<span class="c1"># Train LabelModel</span>
+<span class="n">label_model</span> <span class="o">=</span> <span class="n">LabelModel</span><span class="p">(</span><span class="n">cardinality</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">label_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">L_train</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">log_freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># Score LabelModel on our dev set</span>
+<span class="n">preds_dev</span> <span class="o">=</span> <span class="n">label_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">L_dev</span><span class="p">)</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">metric_score</span><span class="p">(</span><span class="n">df_dev</span><span class="o">.</span><span class="n">gold</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">preds_dev</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LabelModel Accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="c1"># LabelModel Accuracy: 0.765</span>
+
+<span class="c1"># Generate labels for our 1338 unlabeled responses</span>
+<span class="n">preds_train</span> <span class="o">=</span> <span class="n">label_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">L_train</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<hr />
+<h2 id="3-predict-labels-using-ml">(3) Predict Labels Using ML<a class="headerlink" href="#3-predict-labels-using-ml" title="Permanent link"></a></h2>
+<p>Now we have our 1338 programmatic/soft labels, at this point we disregard the <abbr title="Labeling functions">LFs</abbr> and build a machine-learning model simply using 2 things: text responses <img alt="📜" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dc.svg" title=":scroll:" /> and a column of ones and zeroes, extraverted response or not, respectively.</p>
+<p>Consistent with the Snorkel tutorial, I used BERT, a pre-trained language model, and trained a logistic regression model using the BERT features on our 1338 labels. For a stronger approach that can harness Big Data check out this <a href="https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8" target="_blank">article</a>.</p>
+<p>The accuracy of the trained model was <strong>.72</strong> a little bit of shrinkage (~6.5%), but keep in mind we have very small data. I'm not going to beat myself up. There are articles in top assessment journals that don't have this level of accuracy.</p>
+<details class="code"><summary>Code Predict Soft Labels using Supervised ML</summary><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">snorkel.analysis</span> <span class="kn">import</span> <span class="n">metric_score</span>
+<span class="kn">from</span> <span class="nn">snorkel.labeling</span> <span class="kn">import</span> <span class="n">PandasLFApplier</span>
+<span class="kn">from</span> <span class="nn">snorkel.labeling.model</span> <span class="kn">import</span> <span class="n">LabelModel</span>
+
+<span class="c1"># For this step, I followed the code in the Snorkel tutorial on crowdsourcing</span>
+<span class="c1"># https://github.com/snorkel-team/snorkel-tutorials/tree/master/crowdsourcing</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">pytorch_transformers</span> <span class="kn">import</span> <span class="n">BertModel</span><span class="p">,</span> <span class="n">BertTokenizer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">encode_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">tweet_text</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">encode_text</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df_test</span><span class="o">.</span><span class="n">tweet_text</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">encode_text</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">sklearn_model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">&quot;liblinear&quot;</span><span class="p">)</span>
+<span class="n">sklearn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">preds_train</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy of trained model: </span><span class="si">{</span><span class="n">sklearn_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="c1"># Accuracy of trained model: 0.715</span>
+</code></pre></div>
+</details>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>In 1975, Bill Gates and Paul Allen started Microsoft. The Suez Canal reopened and best practices for evaluating open-ended text responses in the talent space were <a href="https://journals.sagepub.com/doi/pdf/10.1177/0149206314567780" target="_blank">assembled</a> 🍾</p>
+<p>The spirit of this post is to channel those seemingly fleeting snapshots of subject matter expertise (i.e., precision) into Python labeling functions (<abbr title="Labeling functions">LFs</abbr>) to be applied to <em>all</em> of our data (i.e., coverage) <em>and</em> on demand (Think: AWS) to evaluate fresh&ndash;yet to be labeled data.  </p>
+<p>The framework of weak/distant supervision (e.g., Snorkel) is especially fitting because it incorporates expertly rated ground truth gold labels to help buoy the legal defensibility of this strategy. </p>
+<p>I spent 90 minutes providing gold labels for 350 responses in terms of extraversion and ended up with an end model trained on 1338 responses with an accuracy of .72. That's a solid start using small, open-source data.</p>
+<p>Derek L Mracek, PhD <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 23c-1.1 0-2-.9-2-2v-2h6v2c0 1.1-.9 2-2 2h-2m1-20c.28 0 .55 0 .81.05C13.42 4.22 14 6.26 14 9c0 2.1-1 7-1 7h-2s-1-4.9-1-7c0-2.74.58-4.78 1.19-5.95.26-.05.53-.05.81-.05m0-2c-.71 0-1.39.09-2.05.26C8.78 2.83 8 5.71 8 9c0 2.28.38 4.37 1 7 0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2 .62-2.63 1-4.72 1-7 0-3.29-.78-6.17-1.95-7.74C13.39 1.09 12.71 1 12 1M4 8c0 3.18 1.85 7.92 4.54 9.21-.54-1-.93-2.54-1.2-4.21C6.55 11.53 6 9.62 6 8c0-1.34.44-2.33 1.47-3.2.26-1.13.62-2.15 1.07-3.01C5.85 3.08 4 4.82 4 8m11.46-6.21c.45.86.81 1.88 1.07 3.01C17.56 5.67 18 6.66 18 8c0 1.62-.55 3.53-1.34 5-.27 1.67-.66 3.21-1.2 4.21C18.15 15.92 20 11.18 20 8s-1.85-4.92-4.54-6.21z"/></svg></span></p>
+<hr />
+<p><a class="md-button md-button--primary" href="https://www.buymeacoffee.com/derekmracek.io" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 23c-1.1 0-2-.9-2-2v-2h6v2c0 1.1-.9 2-2 2h-2m1-20c.28 0 .55 0 .81.05C13.42 4.22 14 6.26 14 9c0 2.1-1 7-1 7h-2s-1-4.9-1-7c0-2.74.58-4.78 1.19-5.95.26-.05.53-.05.81-.05m0-2c-.71 0-1.39.09-2.05.26C8.78 2.83 8 5.71 8 9c0 2.28.38 4.37 1 7 0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2 .62-2.63 1-4.72 1-7 0-3.29-.78-6.17-1.95-7.74C13.39 1.09 12.71 1 12 1M4 8c0 3.18 1.85 7.92 4.54 9.21-.54-1-.93-2.54-1.2-4.21C6.55 11.53 6 9.62 6 8c0-1.34.44-2.33 1.47-3.2.26-1.13.62-2.15 1.07-3.01C5.85 3.08 4 4.82 4 8m11.46-6.21c.45.86.81 1.88 1.07 3.01C17.56 5.67 18 6.66 18 8c0 1.62-.55 3.53-1.34 5-.27 1.67-.66 3.21-1.2 4.21C18.15 15.92 20 11.18 20 8s-1.85-4.92-4.54-6.21z"/></svg></span> Support This Site  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 1.07C7.05 1.56 4 4.92 4 9h7m-7 6a8 8 0 008 8 8 8 0 008-8v-4H4m9-9.93V9h7c0-4.08-3.06-7.44-7-7.93z"/></svg></span></a></p>
+<h2 id="summary_1">Summary<a class="headerlink" href="#summary_1" title="Permanent link"></a></h2>
+<p><em>TLDR: Snorkel is a fitting framework that promotes <abbr title="Subject Matter Experts">SMEs</abbr> ability to impart their wisdom to scale</em>.</p>
+<p>Specifically, we <img alt="👇" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f447.svg" title=":point_down:" /></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Programmed functions in Python that mapped onto our <abbr title="Subject Matter Expert">SME</abbr> ground truth gold labels<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Zero-shot predictions for the 35 factors/facets of the Big 5 personality taxonomy</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> TextBlob sentiment</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Pattern-based heuristics (i.e., keywords)</li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Created a generative model based on accuracies and correlations of our labeling functions<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Programmatically labeled all of our unlabeled responses </li>
+</ul>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Trained a machine learning model on all (previously unlabeled) data</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Strategy works with guidelines and ethical considerations for assessment center operations</li>
+</ul>
+<hr />
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../exploration_background/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Explorations + Code
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../exploration_gpt2_ws/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GPT-2 Interview Response
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2021 derekmracek.io LLC
+
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:<dmracek23@gmail.com>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/derekmracek_io" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/dmracek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/in/derek-mracek-52679122/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['instant'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../assets/pymdownx-extras/extra.js"></script>
+      
+    
+  </body>
+</html>
