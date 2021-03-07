@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://www.derekmracek.io/explorations_code_nbs/exploration_zs_snorkel/">
       
       
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../images/airballoon-outline-grey.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
     
     
@@ -1130,7 +1130,7 @@ heuristically aligning data points with an external knowledge base, and is one o
 <h2 id="3-predict-labels-using-ml">(3) Predict Labels Using ML<a class="headerlink" href="#3-predict-labels-using-ml" title="Permanent link"></a></h2>
 <p>Now we have our 1338 programmatic/soft labels, at this point we disregard the <abbr title="Labeling functions">LFs</abbr> and build a machine-learning model simply using 2 things: text responses <img alt="📜" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dc.svg" title=":scroll:" /> and a column of ones and zeroes, extraverted response or not, respectively.</p>
 <p>Consistent with the Snorkel tutorial, I used BERT, a pre-trained language model, and trained a logistic regression model using the BERT features on our 1338 labels. For a stronger approach that can harness Big Data check out this <a href="https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8" target="_blank">article</a>.</p>
-<p>The accuracy of the trained model was <strong>.72</strong> a little bit of shrinkage (~6.5%), but keep in mind we have very small data. I'm not going to beat myself up. There are articles in top assessment journals that don't have this level of accuracy.</p>
+<p>The accuracy of the trained model was <strong>.72</strong> a little bit of shrinkage (~6.5%), but keep in mind we have very small data. Nevertheless, this level of accuracy is in keeping with top assessment journals.</p>
 <details class="code"><summary>Code Predict Soft Labels using Supervised ML</summary><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">snorkel.analysis</span> <span class="kn">import</span> <span class="n">metric_score</span>
 <span class="kn">from</span> <span class="nn">snorkel.labeling</span> <span class="kn">import</span> <span class="n">PandasLFApplier</span>
 <span class="kn">from</span> <span class="nn">snorkel.labeling.model</span> <span class="kn">import</span> <span class="n">LabelModel</span>
@@ -1262,7 +1262,7 @@ heuristically aligning data points with an external knowledge base, and is one o
     
       
       
-      <a href="mailto:<dmracek23@gmail.com>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+      <a href="mailto:<d@derekmracek.io>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg>
       </a>
     
